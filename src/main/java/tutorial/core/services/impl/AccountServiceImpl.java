@@ -9,7 +9,6 @@ import tutorial.core.repositories.AccountRepo;
 import tutorial.core.repositories.BlogRepo;
 import tutorial.core.services.AccountService;
 import tutorial.core.services.exceptions.AccountDoesNotExistException;
-import tutorial.core.services.exceptions.AccountExistsException;
 import tutorial.core.services.exceptions.BlogExistsException;
 import tutorial.core.services.util.AccountList;
 import tutorial.core.services.util.BlogList;

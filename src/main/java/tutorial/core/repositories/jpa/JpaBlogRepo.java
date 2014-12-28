@@ -2,10 +2,7 @@ package tutorial.core.repositories.jpa;
 
 import org.springframework.stereotype.Repository;
 import tutorial.core.models.entities.Blog;
-import tutorial.core.models.entities.BlogEntry;
 import tutorial.core.repositories.BlogRepo;
-import tutorial.core.services.util.BlogEntryList;
-import tutorial.core.services.util.BlogList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

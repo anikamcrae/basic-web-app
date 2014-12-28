@@ -1,7 +1,7 @@
 package tutorial.core.repositories;
 
 import tutorial.core.models.entities.Account;
-import tutorial.core.models.entities.Blog;
+
 
 import java.util.List;
 
