@@ -26,22 +26,14 @@ public class BlogResourceAsm extends ResourceAssemblerSupport<Blog, BlogResource
         BlogResource blogResource = new BlogResource();
         blogResource.setTitle(blog.getTitle());
 
-        Link linkSelf = linkTo(BlogController.class)
-                            .slash(blog.getId())
-                            .withSelfRel();
-
-        Link linkEntries = linkTo(BlogController.class)
-                                .slash(blog.getId())
-                                .slash("entries")
-                                .withRel("entries");
+        Link linkSelf = linkTo(BlogController.class).slash(blog.getId()).withSelfRel();
+        Link linkEntries = linkTo(BlogController.class).slash(blog.getId()).slash("entries").withRel("entries");
 
         blogResource.add(linkSelf);
         blogResource.add(linkEntries);
 
         if (blog.getOwner() != null) {
-            Link linkOwner =  linkTo(AccountController.class)
-                                .slash(blog.getOwner().getId())
-                                .withRel("owner");
+            Link linkOwner =  linkTo(AccountController.class).slash(blog.getOwner().getId()).withRel("owner");
             blogResource.add(linkOwner);
         }
 

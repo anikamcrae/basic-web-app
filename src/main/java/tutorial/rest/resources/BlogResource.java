@@ -15,6 +15,7 @@ public class BlogResource extends ResourceSupport {
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
 
+
     public Blog toBlog() {
         Blog blog = new Blog();
         blog.setTitle(title);
