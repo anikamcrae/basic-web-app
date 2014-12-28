@@ -18,20 +18,20 @@ public class BlogEntryServiceImpl implements BlogEntryService {
 
     @Override
     public BlogEntry findBlogEntry(Long blogEntryId) {
-        return null;
+        return repo.findBlogEntry(blogEntryId);
     }
 
 
 
     @Override
     public BlogEntry deleteBlogEntry(Long blogEntryId) {
-        return null;
+        return repo.deleteBlogentry(blogEntryId);
     }
 
 
 
     @Override
     public BlogEntry updateBlogEntry(Long blogEntryId, BlogEntry blogEntry) {
-        return null;
+        return repo.updateBlogEntry(blogEntryId, blogEntry);
     }
 }
