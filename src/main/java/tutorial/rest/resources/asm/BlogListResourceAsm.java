@@ -2,7 +2,7 @@ package tutorial.rest.resources.asm;
 
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import tutorial.core.services.util.BlogList;
-import tutorial.mvc.BlogController;
+import tutorial.rest.mvc.BlogController;
 import tutorial.rest.resources.BlogListResource;
 
 /**

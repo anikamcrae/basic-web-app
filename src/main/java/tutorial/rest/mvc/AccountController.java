@@ -1,5 +1,6 @@
-package tutorial.mvc;
+package tutorial.rest.mvc;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import tutorial.core.models.entities.Blog;
 import tutorial.core.services.AccountService;
 import tutorial.core.services.exceptions.AccountDoesNotExistException;
 import tutorial.core.services.exceptions.AccountExistsException;
-import tutorial.core.services.exceptions.BlogExistException;
+import tutorial.core.services.exceptions.BlogExistsException;
 import tutorial.rest.exceptions.BadRequestException;
 import tutorial.rest.exceptions.ConflictException;
 import tutorial.rest.resources.AccountResource;
@@ -21,7 +22,6 @@ import tutorial.rest.resources.BlogResource;
 import tutorial.rest.resources.asm.AccountResourceAsm;
 import tutorial.rest.resources.asm.BlogResourceAsm;
 
-import javax.xml.ws.Response;
 import java.net.URI;
 
 /**
@@ -32,7 +32,13 @@ import java.net.URI;
 public class AccountController {
 
     private AccountService service;
-    public void setService(AccountService service) { this.service = service; }
+
+    @Autowired
+    public AccountController(AccountService service) {
+        this.service = service;
+    }
+
+//    public void setService(AccountService service) { this.service = service; }
 
 
 
@@ -97,7 +103,7 @@ public class AccountController {
 //            return new ResponseEntity<BlogResource>(blogResource, header, HttpStatus.CREATED);
 //        } catch (AccountDoesNotExistException e) {
 //            throw new BadRequestException(e);
-//        } catch (BlogExistException e) {
+//        } catch (BlogExistsException e) {
 //            throw new ConflictException(e);
 //        }
 //
@@ -127,7 +133,7 @@ public class AccountController {
         } catch(AccountDoesNotExistException exception)
         {
             throw new BadRequestException(exception);
-        } catch(BlogExistException e)
+        } catch(BlogExistsException e)
         {
             throw new ConflictException(e);
         }

@@ -1,6 +1,5 @@
 package tutorial.mvc;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -15,7 +14,8 @@ import tutorial.core.models.entities.Blog;
 import tutorial.core.services.AccountService;
 import tutorial.core.services.exceptions.AccountDoesNotExistException;
 import tutorial.core.services.exceptions.AccountExistsException;
-import tutorial.core.services.exceptions.BlogExistException;
+import tutorial.core.services.exceptions.BlogExistsException;
+import tutorial.rest.mvc.AccountController;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
@@ -226,7 +226,7 @@ public class AccountControllerTest {
 
     @Test
     public void createBlogExistingBlogName() throws Exception{
-        when(service.createBlog(eq(1L), any(Blog.class))).thenThrow(new BlogExistException());
+        when(service.createBlog(eq(1L), any(Blog.class))).thenThrow(new BlogExistsException());
 
         //AccountController.createBlog
         mockMvc.perform(

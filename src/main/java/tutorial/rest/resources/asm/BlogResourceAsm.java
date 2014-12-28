@@ -3,8 +3,8 @@ package tutorial.rest.resources.asm;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import tutorial.core.models.entities.Blog;
-import tutorial.mvc.AccountController;
-import tutorial.mvc.BlogController;
+import tutorial.rest.mvc.AccountController;
+import tutorial.rest.mvc.BlogController;
 import tutorial.rest.resources.BlogResource;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;

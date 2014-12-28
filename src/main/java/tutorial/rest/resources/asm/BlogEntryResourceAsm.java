@@ -1,8 +1,8 @@
 package tutorial.rest.resources.asm;
 
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
-import tutorial.mvc.BlogController;
-import tutorial.mvc.BlogEntryController;
+import tutorial.rest.mvc.BlogController;
+import tutorial.rest.mvc.BlogEntryController;
 import tutorial.rest.resources.BlogEntryResource;
 import tutorial.core.models.entities.BlogEntry;
 import org.springframework.hateoas.Link;

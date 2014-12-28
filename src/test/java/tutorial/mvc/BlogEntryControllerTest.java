@@ -5,12 +5,12 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import tutorial.core.models.entities.Blog;
 import tutorial.core.models.entities.BlogEntry;
 import tutorial.core.services.BlogEntryService;
+import tutorial.rest.mvc.BlogEntryController;
 
 
 import static org.hamcrest.Matchers.*;

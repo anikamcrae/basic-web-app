@@ -2,7 +2,6 @@ package tutorial.mvc;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -16,6 +15,7 @@ import tutorial.core.models.entities.BlogEntry;
 import tutorial.core.services.BlogService;
 import tutorial.core.services.exceptions.BlogNotFoundException;
 import tutorial.core.services.util.BlogList;
+import tutorial.rest.mvc.BlogController;
 
 
 import java.util.ArrayList;
