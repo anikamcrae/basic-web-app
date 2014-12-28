@@ -27,7 +27,7 @@ public class BlogResourceAsm extends ResourceAssemblerSupport<Blog, BlogResource
         blogResource.setTitle(blog.getTitle());
 
         Link linkSelf = linkTo(BlogController.class).slash(blog.getId()).withSelfRel();
-        Link linkEntries = linkTo(BlogController.class).slash(blog.getId()).slash("entries").withRel("entries");
+        Link linkEntries = linkTo(BlogController.class).slash(blog.getId()).slash("blog-entries").withRel("entries");
 
         blogResource.add(linkSelf);
         blogResource.add(linkEntries);
@@ -39,15 +39,23 @@ public class BlogResourceAsm extends ResourceAssemblerSupport<Blog, BlogResource
 
         return blogResource;
 
-//           { "links" : [  { "href" : "http://localhost/rest/blogs/1",
-//                            "rel" : "self"
-//                          },
-//                          { "href" : "http://localhost/rest/blogs/1/entries",
-//                            "rel" : "entries"
-//                          }
-//                       ],
-//             "title" : "Test Title"
-//           }
+//        {
+//            "title": "Kitchen Blog",
+//             "links": [
+//            {
+//                "rel": "self",
+//                    "href": "http://localhost:8080/basic-web-app/rest/blogs/1"
+//            },
+//            {
+//                "rel": "entries",
+//                    "href": "http://localhost:8080/basic-web-app/rest/blogs/1/entries"
+//            },
+//            {
+//                "rel": "owner",
+//                    "href": "http://localhost:8080/basic-web-app/rest/accounts/1"
+//            }
+//            ]
+//        }
 
 
     }
