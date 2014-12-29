@@ -60,6 +60,8 @@ public class BlogEntryControllerTest {
                 .andExpect(status().isOk());
     }
 
+
+
     @Test
     public void getNonExistingBlogEntry() throws Exception {
         when(service.findBlogEntry(1L)).thenReturn(null);
@@ -67,6 +69,8 @@ public class BlogEntryControllerTest {
         mockMvc.perform(get("/rest/blog-entries/1"))
                 .andExpect(status().isNotFound());
     }
+
+
 
 
     @Test
@@ -83,6 +87,8 @@ public class BlogEntryControllerTest {
                 .andExpect(status().isOk());
     }
 
+
+
     @Test
     public void deleteNonExistingBlogEntry() throws Exception {
         when(service.deleteBlogEntry(1L)).thenReturn(null);
@@ -91,32 +97,7 @@ public class BlogEntryControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-//    @Test
-//    public void updateExistingBlogEntry() throws Exception {
-//        BlogEntry updatedEntry = new BlogEntry();
-//        updatedEntry.setId(1L);
-//        updatedEntry.setTitle("Test Title");
-//
-//        when(service.updateBlogEntry(eq(1L), any(BlogEntry.class)))
-//                .thenReturn(updatedEntry);
-//
-//        mockMvc.perform(put("/rest/blog-entries/1")
-//                .content("{\"title\":\"Test Title\"}")
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(jsonPath("$.title", is(updatedEntry.getTitle())))
-//                .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/blog-entries/1"))))
-//                .andExpect(status().isOk());
-//    }
 
-//    @Test
-//    public void updateNonExistingBlogEntry() throws Exception {
-//        when(service.updateBlogEntry(eq(1L), any(BlogEntry.class))).thenReturn(null);
-//
-//        mockMvc.perform(put("/rest/blog-entries/1")
-//                .content("{\"title\":\"Test Title\"}")
-//                .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isNotFound());
-//    }
 
 
     @Test
@@ -125,7 +106,8 @@ public class BlogEntryControllerTest {
         updatedEntry.setId(1L);
         updatedEntry.setTitle("Test Title");
 
-        when(service.updateBlogEntry(eq(1L), any(BlogEntry.class))).thenReturn(updatedEntry);
+        when(service.updateBlogEntry(eq(1L), any(BlogEntry.class)))
+                .thenReturn(updatedEntry);
 
         mockMvc.perform(put("/rest/blog-entries/1")
                 .content("{\"title\":\"Test Title\"}")
@@ -134,5 +116,19 @@ public class BlogEntryControllerTest {
                 .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/blog-entries/1"))))
                 .andExpect(status().isOk());
     }
+
+
+
+    @Test
+    public void updateNonExistingBlogEntry() throws Exception {
+        when(service.updateBlogEntry(eq(1L), any(BlogEntry.class))).thenReturn(null);
+
+        mockMvc.perform(put("/rest/blog-entries/1")
+                .content("{\"title\":\"Test Title\"}")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+
 
 }

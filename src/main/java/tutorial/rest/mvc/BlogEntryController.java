@@ -56,7 +56,7 @@ public class BlogEntryController {
 
 
 
-    @RequestMapping(value = "/blogEntryId", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{blogEntryId}", method = RequestMethod.PUT)
     public ResponseEntity<BlogEntryResource> updateBlogEntry(@PathVariable Long blogEntryId, @RequestBody BlogEntryResource sentBlogEntry) {
         BlogEntry updatedBlogEntry = service.updateBlogEntry(blogEntryId, sentBlogEntry.toBlogEntry());
 
