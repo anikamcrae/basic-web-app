@@ -26,9 +26,6 @@ public class BlogEntryController {
         this.service = service;
     }
 
-//    public BlogEntryController(BlogEntryService service) {
-//        this.service = service;
-//    }
 
 
     @RequestMapping(value="/{blogEntryId}", method = RequestMethod.GET)

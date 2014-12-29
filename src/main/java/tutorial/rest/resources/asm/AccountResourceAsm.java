@@ -23,22 +23,26 @@ public class AccountResourceAsm extends ResourceAssemblerSupport<Account, Accoun
     public AccountResource toResource(Account account) {
         AccountResource resource = new AccountResource();
         resource.setName(account.getName());
-        resource.setPassword(account.getPassword());
+        resource.setPassword(account.getPassword()); //won't appear in response json because of AccountResource.getPassword @JsonIgnore
 
         resource.add(linkTo(methodOn(AccountController.class).getAccount(account.getId())).withSelfRel());
         resource.add(linkTo(methodOn(AccountController.class).findAllBlogs(account.getId())).withRel("blogs"));
 
         return resource;
 
-        /* {
-            "name":"test",
-                "links":[
-                            {
-                                "rel":"self",
-                                "href":"http://localhost/rest/accounts/1"
-                            }
-                        ]
-        } */
+//        {
+//            "name": "test",
+//                "links": [
+//            {
+//                "rel": "self",
+//                    "href": "http://localhost:8080/basic-web-app/rest/accounts/1"
+//            },
+//            {
+//                "rel": "blogs",
+//                    "href": "http://localhost:8080/basic-web-app/rest/accounts/1/blogs"
+//            }
+//            ]
+//        }
 
     }
 }

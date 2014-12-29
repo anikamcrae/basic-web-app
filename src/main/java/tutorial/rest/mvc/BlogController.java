@@ -40,9 +40,7 @@ public class BlogController {
     public BlogController(BlogService service) {
         this.service = service;
     }
-//    public BlogController(BlogService service) {
-//        this.service = service;
-//    }
+
 
 
 
@@ -74,14 +72,35 @@ public class BlogController {
             BlogEntryResource resource = new BlogEntryResourceAsm().toResource(blogEntry);
 
             HttpHeaders header = new HttpHeaders();
-            header.setLocation(
-                    URI.create(resource.getLink("self").getHref())
-            );
 
-            return new ResponseEntity<BlogEntryResource>(resource, header, HttpStatus.CREATED);
+            //Location: http://localhost:8080/basic-web-app/rest/blog-entries/1
+            header.setLocation(URI.create(resource.getLink("self").getHref()));
+
+            return new ResponseEntity<BlogEntryResource>(resource, header, HttpStatus.CREATED); //Status: 201 Created
         } catch (BlogNotFoundException e) {
             throw new NotFoundException(e);
         }
+
+//        {
+//            "title": "Kitchen Blog Entry",
+//                "content": Test Content,
+//                "links": [
+//            {
+//                "rel": "self",
+//                    "href": "http://localhost:8080/basic-web-app/rest/blog-entries/1"
+//            },
+//            {
+//                "rel": "blog",
+//                    "href": "http://localhost:8080/basic-web-app/rest/blogs/1"
+//            }
+//            ]
+//        }
+
+//      Header
+//      Location: http://localhost:8080/basic-web-app/rest/blog-entries/1
+
+//      Status:
+//      201 Created
 
     }
 
@@ -94,10 +113,49 @@ public class BlogController {
 
             BlogEntryListResource resource = new BlogEntryListResourceAsm().toResource(list);
 
-            return new ResponseEntity<BlogEntryListResource>(resource, HttpStatus.OK);
+            return new ResponseEntity<BlogEntryListResource>(resource, HttpStatus.OK); //Status: 200 OK
         } catch (BlogNotFoundException e) {
             throw new NotFoundException(e);
         }
+
+//        {
+//            "entries": [
+//            {
+//                "title": "Kitchen Blog Entry",
+//                    "content": "Test Content",
+//                    "links": [
+//                {
+//                    "rel": "self",
+//                        "href": "http://localhost:8080/basic-web-app/rest/blog-entries/1"
+//                },
+//                {
+//                    "rel": "blog",
+//                        "href": "http://localhost:8080/basic-web-app/rest/blogs/1"
+//                }
+//                ]
+//            },
+//            {
+//                "title": "Kitchen Blog Entry2",
+//                    "content": "Test Content2",
+//                    "links": [
+//                {
+//                    "rel": "self",
+//                        "href": "http://localhost:8080/basic-web-app/rest/blog-entries/2"
+//                },
+//                {
+//                    "rel": "blog",
+//                        "href": "http://localhost:8080/basic-web-app/rest/blogs/1"
+//                }
+//                ]
+//            }
+//            ],
+//            "links": [
+//            {
+//                "rel": "self",
+//                    "href": "http://localhost:8080/basic-web-app/rest/blogs/1/blog-entries"
+//            }
+//            ]
+//        }
     }
 
 

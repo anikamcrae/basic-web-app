@@ -31,10 +31,47 @@ public class BlogEntryListResourceAsm extends ResourceAssemblerSupport<BlogEntry
         BlogEntryListResource listResource = new BlogEntryListResource();
         listResource.setEntries(resources);
 
-        listResource.add(
-            linkTo(methodOn(BlogController.class).findAllBlogEntries(list.getBlogId())).withSelfRel()
-        );
+        listResource.add(linkTo(methodOn(BlogController.class).findAllBlogEntries(list.getBlogId())).withSelfRel());
 
         return listResource;
+
+//        {
+//            "entries": [
+//            {
+//                "title": "Kitchen Blog Entry",
+//                    "content": "Test Content",
+//                    "links": [
+//                {
+//                    "rel": "self",
+//                        "href": "http://localhost:8080/basic-web-app/rest/blog-entries/1"
+//                },
+//                {
+//                    "rel": "blog",
+//                        "href": "http://localhost:8080/basic-web-app/rest/blogs/1"
+//                }
+//                ]
+//            },
+//            {
+//                "title": "Kitchen Blog Entry",
+//                    "content": "Test Content",
+//                    "links": [
+//                {
+//                    "rel": "self",
+//                        "href": "http://localhost:8080/basic-web-app/rest/blog-entries/2"
+//                },
+//                {
+//                    "rel": "blog",
+//                        "href": "http://localhost:8080/basic-web-app/rest/blogs/1"
+//                }
+//                ]
+//            }
+//            ],
+//            "links": [
+//            {
+//                "rel": "self",
+//                    "href": "http://localhost:8080/basic-web-app/rest/blogs/1/blog-entries"
+//            }
+//            ]
+//        }
     }
 }

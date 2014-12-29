@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import tutorial.core.models.entities.Blog;
@@ -12,8 +13,9 @@ import tutorial.core.models.entities.BlogEntry;
 import tutorial.core.services.BlogEntryService;
 import tutorial.rest.mvc.BlogEntryController;
 
-
 import static org.hamcrest.Matchers.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -53,10 +55,8 @@ public class BlogEntryControllerTest {
 
         mockMvc.perform(get("/rest/blog-entries/1"))
                 .andExpect(jsonPath("$.title", is(entry.getTitle())))
-                .andExpect(jsonPath("$.links[*].href",
-                        hasItems(endsWith("/blogs/1"), endsWith("/blog-entries/1"))))
-                .andExpect(jsonPath("$.links[*].rel",
-                        hasItems(is("self"), is("blog"))))
+                .andExpect(jsonPath("$.links[*].href",hasItems(endsWith("/blogs/1"), endsWith("/blog-entries/1"))))
+                .andExpect(jsonPath("$.links[*].rel",hasItems(is("self"), is("blog"))))
                 .andExpect(status().isOk());
     }
 
@@ -117,4 +117,22 @@ public class BlogEntryControllerTest {
 //                .contentType(MediaType.APPLICATION_JSON))
 //                .andExpect(status().isNotFound());
 //    }
+
+
+    @Test
+    public void updateExistingBlogEntry() throws Exception {
+        BlogEntry updatedEntry = new BlogEntry();
+        updatedEntry.setId(1L);
+        updatedEntry.setTitle("Test Title");
+
+        when(service.updateBlogEntry(eq(1L), any(BlogEntry.class))).thenReturn(updatedEntry);
+
+        mockMvc.perform(put("/rest/blog-entries/1")
+                .content("{\"title\":\"Test Title\"}")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.title", is(updatedEntry.getTitle())))
+                .andExpect(jsonPath("$.links[*].href", hasItem(endsWith("/blog-entries/1"))))
+                .andExpect(status().isOk());
+    }
+
 }

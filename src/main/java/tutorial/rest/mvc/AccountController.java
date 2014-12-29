@@ -78,12 +78,34 @@ public class AccountController {
 
             HttpHeaders headers = new HttpHeaders();
 
+            //Location: http://localhost:8080/basic-web-app/rest/accounts/1
             headers.setLocation(URI.create(accountResource.getLink("self").getHref()));
 
-            return new ResponseEntity<AccountResource>(accountResource, headers, HttpStatus.CREATED);
+            return new ResponseEntity<AccountResource>(accountResource, headers, HttpStatus.CREATED); //Status:201 Created
         } catch (AccountExistsException e) {
             throw new ConflictException(e);
         }
+
+//        {
+//            "name": "test",
+//                "links": [
+//            {
+//                "rel": "self",
+//                    "href": "http://localhost:8080/basic-web-app/rest/accounts/1"
+//            },
+//            {
+//                "rel": "blogs",
+//                    "href": "http://localhost:8080/basic-web-app/rest/accounts/1/blogs"
+//            }
+//            ]
+//        }
+
+//       headers
+//       Location: http://localhost:8080/basic-web-app/rest/accounts/1
+
+//      Status
+//      201 Created
+
     }
 
 
@@ -121,26 +143,39 @@ public class AccountController {
 
             BlogResource blogResource = new BlogResourceAsm().toResource(blog);
 
-            //Headers = {Location=[http://localhost/rest/blogs/1], Content-Type=[application/json;charset=UTF-8]}
+            //Headers = Location: http://localhost:8080/basic-web-app/rest/blogs/1
             HttpHeaders header = new HttpHeaders();
             header.setLocation(URI.create(blogResource.getLink("self").getHref()));
 
-            return new ResponseEntity<BlogResource>(blogResource, header, HttpStatus.CREATED);
+            return new ResponseEntity<BlogResource>(blogResource, header, HttpStatus.CREATED); //Status:201 Created
         } catch (AccountDoesNotExistException e) {
             throw new BadRequestException(e);
         } catch (BlogExistsException e) {
             throw new ConflictException(e);
         }
-//
-//           { "links" : [  { "href" : "http://localhost/rest/blogs/1",
-//                            "rel" : "self"
-//                          },
-//                          { "href" : "http://localhost/rest/blogs/1/entries",
-//                            "rel" : "entries"
-//                          }
-//                       ],
-//             "title" : "Test Title"
-//           }
+//        {
+//            "title": "Kitchen Blog",
+//             "links": [
+//            {
+//                "rel": "self",
+//                    "href": "http://localhost:8080/basic-web-app/rest/blogs/1"
+//            },
+//            {
+//                "rel": "entries",
+//                    "href": "http://localhost:8080/basic-web-app/rest/blogs/1/entries"
+//            },
+//            {
+//                "rel": "owner",
+//                    "href": "http://localhost:8080/basic-web-app/rest/accounts/1"
+//            }
+//            ]
+//        }
+
+//       headers
+//       Location: http://localhost:8080/basic-web-app/rest/blogs/1
+
+//      Status
+//      201 Created
     }
 
 
